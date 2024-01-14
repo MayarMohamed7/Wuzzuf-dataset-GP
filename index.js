@@ -3,7 +3,7 @@ const { createObjectCsvWriter } = require('csv-writer');
 
 async function run() {
   const browser = await puppeteer.launch({ headless: false, timeout: 120000 });
-  let page_num = 0;
+  let page_num = 200;
   let jobData = [];
   while (true){
   const page = await browser.newPage();
