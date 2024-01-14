@@ -5,6 +5,7 @@ async function run() {
   const browser = await puppeteer.launch({ headless: false, timeout: 120000 });
   let page_num = 0;
   let jobData = [];
+  // Initiates an infinite loop to iterate through multiple pages of job listings.
   while (true){
   const page = await browser.newPage();
   
@@ -50,6 +51,7 @@ var limitWithoutCommas = page_limit.replace(/,/g, '');
     });
     
     for (const job of currentPageData) {
+      // For each job, the script navigates to the job details page and extracts additional information.
       await page.goto(job.link, { timeout: 120000 });
 
       await page.waitForSelector('.css-s2o0yh', { timeout: 120000 });
@@ -114,7 +116,7 @@ var limitWithoutCommas = page_limit.replace(/,/g, '');
   saveToCSV(jobData);
   await browser.close();
 }
-
+// Configures the CSV writer with the file path and column headers.
 const csvWriter = createObjectCsvWriter({
   path: 'F:\\shithole\\4th year-1st semester\\Graduation project\\dataScrappingjob_data.csv',
   header: [
